@@ -1,4 +1,4 @@
-###Tensor Linkの仕様
+# Tensor Linkの仕様
 ## 1.記法
 	import TensorLink.Learning as L
 	import TensorLink.Function as F
