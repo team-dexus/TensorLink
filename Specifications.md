@@ -20,6 +20,7 @@
 			return h
 	opt = Adam(0.001,0.99,0.99)
 	network = CNN()
+	opt.assign(network)
 	while True:
 		result = CNN(train_data)
 		loss = F.mse(result,teacher_data)

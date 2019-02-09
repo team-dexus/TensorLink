@@ -12,5 +12,7 @@ class Affine(Learnable):
             b_init = initializer.Normal()
         self.weight = w_init(shape = (out_size,in_size))
         self.bias = b_init(shape = (out_size,))
+        self.weight.train = True
+        self.bias.train = True
     def __call__(self,x):
         return F.add(F.affine(self.weight,x),self.bias)

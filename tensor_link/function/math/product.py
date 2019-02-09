@@ -6,8 +6,7 @@ class _product(Function):
         super().__init__()
 
     def __call__(self,a,b):
-        new_tensor = Tensor()
-        new_tensor.data = a.data * b.data
+        new_tensor = Tensor(a.data * b.data)
         self.graph = [a,b]
         new_tensor.graph=self
         return new_tensor

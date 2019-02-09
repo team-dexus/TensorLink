@@ -2,7 +2,7 @@ import tensor_link
 from tensor_link import xp
 
 class Tensor:
-    def __init__(self,data = None,train = True):
+    def __init__(self,data = None,train = False):
         self.data = data.astype(tensor_link.config.DEFAULT_DTYPE)
         self.graph = None
         self.grad = xp.zeros_like(data,dtype=tensor_link.config.DEFAULT_DTYPE)
