@@ -14,3 +14,5 @@ class Function:
 #作ったFunctionは全てここでimport
 from tensor_link.function.math.add import add
 from tensor_link.function.math.product import product
+
+from tensor_link.function.layer.affine import affine
