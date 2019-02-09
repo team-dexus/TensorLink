@@ -4,30 +4,39 @@ sys.dont_write_bytecode = True
 
 import numpy as xp
 
+import tensor_link
 import tensor_link.function as F
-import tensor_link.learning as L
+import tensor_link.learnable as L
 from tensor_link import Tensor,Model
 
 class Network(Model):
     def __init__(self):
         super().__init__()
-        pass
-    def __call__(self, a,b,c,x):
-        #return ax^2+bx+c
-        h = F.product(a,x)
-        h = F.add(h,b)
-        h = F.product(h,x)
-        h = F.add(h,c)
+        self.a1 = L.Affine(2,2)
+    def __call__(self,x):
+        h = self.a1(x)
         
         return h
 
-a = xp.array([[1,2],[3,4]])
-a = Tensor(a)
-b = xp.array([[1,2],[5,6],[3,4]])
-b = Tensor(b)
-test = F.affine(a,b)
-test.backward()
 
-print(a.grad)
-print(b.grad)
-print(test.data)
+net = Network()
+x = Tensor(xp.array([[1,2],[2,3]]))
+test = net(x)
+test.backward()
+f_x = test.data.sum()
+
+print(f_x)
+print(net.a1.weight.grad)
+
+#数値微分（検証用）
+net.a1.weight.data[1][0] += 0.001
+test = net(x)
+print((test.data.sum() - f_x) / 0.001)
+
+'''
+出力例
+0.137 #全結合層通したのち、全て足し合わせた数値
+[[3. 5.]#weightの微分の値。
+ [3. 5.]]
+5.0048828125 #weightのなかのどれかで数値微分した結果。上の誤差逆伝播とこれがほぼ同じなら成功。違ったら何か間違ってる。
+'''

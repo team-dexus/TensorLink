@@ -8,8 +8,7 @@ class _affine(Function):
         super().__init__()
 
     def __call__(self,a,b):
-        new_tensor = Tensor()
-        new_tensor.data = xp.dot(a.data,b.data.T).T
+        new_tensor = Tensor(xp.dot(a.data,b.data.T).T)
         self.graph = [a,b]
         new_tensor.graph=self
         return new_tensor

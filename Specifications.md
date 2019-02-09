@@ -1,6 +1,6 @@
 # Tensor Linkの仕様
 ## 1.記法
-	import tensor_link.learning as L
+	import tensor_link.learnable as L
 	import tensor_link.function as F
 	from tensor_link import Model
 	import train_data
@@ -29,7 +29,7 @@
 ## 2.クラス概要
 Tensor → 計算グラフを保持した変数（ベクトル、二次元配列なども値として入る。）  
 Function → 学習不可な関数  
-Learning → 学習可能な関数。TensorクラスとFunctionクラスの組み合わせで作られる。  
+Learnable → 学習可能な関数。TensorクラスとFunctionクラスの組み合わせで作られる。  
 
 ## 3.Tensorクラス
 #### 変数
@@ -40,5 +40,5 @@ grad → 勾配を格納する
 backward() → 誤差逆伝播を行う。  
 ## 4.Function
 Tensorを返す関数。クラスを生成して、それで計算してTensorを返すことで、Tensorが計算グラフを保持できるようにする
-## 5.Learningクラス
+## 5.Learnableクラス
 （考え中）
